@@ -26,3 +26,5 @@
 *.ipr
 *.ids
 *.orig
+/rds-petclinic-data/target/
+/rds-petclinic-web/target/
