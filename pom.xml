@@ -31,8 +31,16 @@
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-maven-plugin</artifactId>
 				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
 
+	<!-- this tag is must when you want to publish a release of your project using maven-release-plugin	-->
+	<scm>
+		<developerConnection>scm:git:git@github.com:singh-deep-raman/rds-spring-petclinic.git</developerConnection>
+	</scm>
 </project>
