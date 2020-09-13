@@ -1,16 +1,9 @@
 package com.raman.springboot.rdspetclinic.services;
 
 import com.raman.springboot.rdspetclinic.model.Owner;
+import org.springframework.data.repository.CrudRepository;
 
-import java.util.Set;
-
-public interface OwnerService {
-
-    Owner findById(Long id);
-
-    Owner save(Owner owner);
-
-    Set<Owner> findAll();
+public interface OwnerService extends CrudRepository<Owner, Long> {
 
     Owner findByLastName(String lastName);
 }
