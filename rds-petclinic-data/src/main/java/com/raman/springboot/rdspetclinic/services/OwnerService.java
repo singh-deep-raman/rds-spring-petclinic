@@ -1,6 +1,8 @@
 package com.raman.springboot.rdspetclinic.services;
 
-public interface OwnerService<Owner, Long> extends CrudService<Owner, Long> {
+import com.raman.springboot.rdspetclinic.model.Owner;
+
+public interface OwnerService extends CrudService<Owner, Long> {
 
     Owner findByLastName(String lastName);
 }

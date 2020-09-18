@@ -1,5 +1,7 @@
 package com.raman.springboot.rdspetclinic.services;
 
-public interface VetService<Vet, Long> extends CrudService<Vet, Long> {
+import com.raman.springboot.rdspetclinic.model.Vet;
+
+public interface VetService extends CrudService<Vet, Long> {
 
 }
