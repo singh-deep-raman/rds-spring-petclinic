@@ -26,15 +26,14 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        /** no need to set Ids, because we have given that responsibility to Service/Dao class */
         Owner owner = new Owner();
-        owner.setId(1L);
         owner.setFirstName("Michael");
         owner.setLastName("Scofield");
 
         ownerService.save(owner);
 
         Owner owner2 = new Owner();
-        owner2.setId(2L);
         owner2.setFirstName("Lincoln");
         owner2.setLastName("Burrows");
 
@@ -43,14 +42,12 @@ public class DataLoader implements CommandLineRunner {
         System.out.println("Loaded Owners");
 
         Vet vet = new Vet();
-        vet.setId(1L);
         vet.setFirstName("Sarah");
         vet.setLastName("Gordon");
 
         vetService.save(vet);
 
         Vet vet1 = new Vet();
-        vet1.setId(2L);
         vet1.setFirstName("Abc");
         vet1.setLastName("Def");
 
