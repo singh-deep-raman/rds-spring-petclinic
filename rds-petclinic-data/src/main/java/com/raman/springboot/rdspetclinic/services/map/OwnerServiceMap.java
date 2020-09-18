@@ -2,11 +2,13 @@ package com.raman.springboot.rdspetclinic.services.map;
 
 import com.raman.springboot.rdspetclinic.model.Owner;
 import com.raman.springboot.rdspetclinic.services.OwnerService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Service
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
 
     @Override

@@ -17,10 +17,11 @@ public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
 
-    public DataLoader() {
-        /** right now we are using rigid objects, it will be refactored to spring managed beans in future */
-        ownerService = new OwnerServiceMap();
-        vetService = new VetServiceMap();
+    /** earlier new operator was used, now we are using DI, because these services are Spring Managed Beans now
+     *  due to @Service annotation */
+    public DataLoader(OwnerService ownerService, VetService vetService) {
+        this.ownerService = ownerService;
+        this.vetService = vetService;
     }
 
     @Override
