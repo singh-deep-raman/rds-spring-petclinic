@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymleaf.org">
+<html lang="en" xmlns:th="http://www.thymleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
 <head>
     <meta charset="UTF-8">
     <title>Owners Title Page</title>
 </head>
 <body>
-<h1 th:text="'List of Pet Owners'"></h1>
+<h2 th:text="'List of Pet Owners'"></h2>
 
-<table>
+<table class="table table-striped">
     <thead>
-    <th>Id</th>
-    <th>First Name</th>
-    <th>Last Name</th>
+    <tr>
+        <th style="width: 150px;">Id</th>
+        <th style="width: 150px;">First Name</th>
+        <th style="width: 150px;">Last Name</th>
+    </tr>
     </thead>
 
     <!-- ? is null safe operator, it should not be used in a loop, because loop elements will not be null, just demo  -->
