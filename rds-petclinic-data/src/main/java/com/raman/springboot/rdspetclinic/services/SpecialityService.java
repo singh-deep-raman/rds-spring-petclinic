@@ -2,5 +2,5 @@ package com.raman.springboot.rdspetclinic.services;
 
 import com.raman.springboot.rdspetclinic.model.Speciality;
 
-public interface SpecialitiesService extends CrudService<Speciality, Long> {
+public interface SpecialityService extends CrudService<Speciality, Long> {
 }

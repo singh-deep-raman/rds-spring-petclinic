@@ -1,13 +1,13 @@
 package com.raman.springboot.rdspetclinic.services.map;
 
 import com.raman.springboot.rdspetclinic.model.Speciality;
-import com.raman.springboot.rdspetclinic.services.SpecialitiesService;
+import com.raman.springboot.rdspetclinic.services.SpecialityService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
-public class SpecialitiesServiceMap extends AbstractMapService<Speciality, Long> implements SpecialitiesService {
+public class SpecialityServiceMap extends AbstractMapService<Speciality, Long> implements SpecialityService {
     @Override
     public Set<Speciality> findAll() {
         return super.findAll();
