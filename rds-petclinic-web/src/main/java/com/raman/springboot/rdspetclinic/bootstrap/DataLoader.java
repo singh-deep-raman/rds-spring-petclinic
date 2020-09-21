@@ -1,6 +1,7 @@
 package com.raman.springboot.rdspetclinic.bootstrap;
 
 import com.raman.springboot.rdspetclinic.model.Owner;
+import com.raman.springboot.rdspetclinic.model.Pet;
 import com.raman.springboot.rdspetclinic.model.PetType;
 import com.raman.springboot.rdspetclinic.model.Vet;
 import com.raman.springboot.rdspetclinic.services.OwnerService;
@@ -8,6 +9,8 @@ import com.raman.springboot.rdspetclinic.services.PetTypeService;
 import com.raman.springboot.rdspetclinic.services.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -27,6 +30,7 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        /** save some type of pets petclinic treats like dog, cat, etc */
         PetType dog = new PetType();
         dog.setName("Dog");
         PetType savedDogPetType = petTypeService.save(dog);
@@ -39,12 +43,32 @@ public class DataLoader implements CommandLineRunner {
         Owner owner = new Owner();
         owner.setFirstName("Michael");
         owner.setLastName("Scofield");
+        owner.setAddress("Sec 51");
+        owner.setCity("Gurugram");
+        owner.setTelephone("9888872022");
+        /** create pet for michael owner */
+        Pet michaelsPet = new Pet();
+        michaelsPet.setName("messi");
+        michaelsPet.setPetType(savedDogPetType);
+        michaelsPet.setBirthDate(LocalDate.of(2000,11,30));
+        michaelsPet.setOwner(owner);
+        owner.getPets().add(michaelsPet);
 
         ownerService.save(owner);
 
         Owner owner2 = new Owner();
         owner2.setFirstName("Lincoln");
         owner2.setLastName("Burrows");
+        owner2.setAddress("M. Vihar");
+        owner2.setCity("Ludhiana");
+        owner2.setTelephone("9582263997");
+        /** create pet for lincoln */
+        Pet lincolnPet = new Pet();
+        lincolnPet.setName("orion");
+        lincolnPet.setPetType(savedCatPetType);
+        lincolnPet.setBirthDate(LocalDate.of(2000,11,30));
+        lincolnPet.setOwner(owner2);
+        owner.getPets().add(lincolnPet);
 
         ownerService.save(owner2);
 
