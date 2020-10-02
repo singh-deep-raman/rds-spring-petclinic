@@ -10,4 +10,10 @@ import org.springframework.data.repository.CrudRepository;
  * Our example is tied to just basic CRUD operations so CrudRepository will do the trick
  */
 public interface OwnerRepository extends CrudRepository<Owner, Long> {
+
+    /**
+     * We are adding this method because it is based on lastname which is not part of ID
+     * JPA will implement this method at runtime
+     */
+    Owner findByLastName(String lastName);
 }
