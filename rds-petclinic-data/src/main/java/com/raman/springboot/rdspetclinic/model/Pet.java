@@ -2,6 +2,8 @@ package com.raman.springboot.rdspetclinic.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "pets")
@@ -28,6 +30,14 @@ public class Pet extends BaseEntity{
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private Owner owner;
+
+    /**
+     * 1. @OneToMany because one pet can have many visits
+     * 2. CasacdeType.ALL because if pet is deleted, there is no point keeping it's visits in DB
+     * 3. mappedBy = 'pet' means mapping is specified in Pet entity on 'pet' property
+     */
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
+    private Set<Visit> visits = new HashSet<>();
 
     public String getName() {
         return name;
