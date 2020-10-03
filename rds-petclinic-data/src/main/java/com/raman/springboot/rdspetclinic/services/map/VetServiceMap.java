@@ -4,11 +4,13 @@ import com.raman.springboot.rdspetclinic.model.Speciality;
 import com.raman.springboot.rdspetclinic.model.Vet;
 import com.raman.springboot.rdspetclinic.services.SpecialityService;
 import com.raman.springboot.rdspetclinic.services.VetService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile({"default", "map"}) // default means when no profile is active, this profile is default to be used
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
 
     private final SpecialityService specialityService;

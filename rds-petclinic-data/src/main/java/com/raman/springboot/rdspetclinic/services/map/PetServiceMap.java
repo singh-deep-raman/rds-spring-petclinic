@@ -2,11 +2,13 @@ package com.raman.springboot.rdspetclinic.services.map;
 
 import com.raman.springboot.rdspetclinic.model.Pet;
 import com.raman.springboot.rdspetclinic.services.PetService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile({"default", "map"}) // default means when no profile is active, this profile is default to be used
 public class PetServiceMap extends AbstractMapService<Pet,Long> implements PetService {
 
     @Override

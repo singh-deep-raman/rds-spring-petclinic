@@ -5,6 +5,7 @@ import com.raman.springboot.rdspetclinic.model.Pet;
 import com.raman.springboot.rdspetclinic.services.OwnerService;
 import com.raman.springboot.rdspetclinic.services.PetService;
 import com.raman.springboot.rdspetclinic.services.PetTypeService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
+@Profile({"default", "map"}) // default means when no profile is active, this profile is default to be used
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
 
 
