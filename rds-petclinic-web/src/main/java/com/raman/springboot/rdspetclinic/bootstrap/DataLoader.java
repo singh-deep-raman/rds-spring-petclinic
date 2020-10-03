@@ -1,10 +1,7 @@
 package com.raman.springboot.rdspetclinic.bootstrap;
 
 import com.raman.springboot.rdspetclinic.model.*;
-import com.raman.springboot.rdspetclinic.services.OwnerService;
-import com.raman.springboot.rdspetclinic.services.PetTypeService;
-import com.raman.springboot.rdspetclinic.services.SpecialityService;
-import com.raman.springboot.rdspetclinic.services.VetService;
+import com.raman.springboot.rdspetclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -17,14 +14,16 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialityService specialityService;
+    private final VisitService visitService;
 
     /** earlier new operator was used, now we are using DI, because these services are Spring Managed Beans now
      *  due to @Service annotation */
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialityService = specialityService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -57,7 +56,7 @@ public class DataLoader implements CommandLineRunner {
         michaelsPet.setOwner(owner);
         owner.getPets().add(michaelsPet);
 
-        ownerService.save(owner);
+        Owner savedOwner1 = ownerService.save(owner);
 
         Owner owner2 = new Owner();
         owner2.setFirstName("Lincoln");
@@ -71,9 +70,9 @@ public class DataLoader implements CommandLineRunner {
         lincolnPet.setPetType(savedCatPetType);
         lincolnPet.setBirthDate(LocalDate.of(2000,11,30));
         lincolnPet.setOwner(owner2);
-        owner.getPets().add(lincolnPet);
+        owner2.getPets().add(lincolnPet); // wrote owner instead of owner2, evils of copy pasting, id was coming null for pet, because mapping was incorrect
 
-        ownerService.save(owner2);
+        Owner savedOwner2 = ownerService.save(owner2);
 
         System.out.println("Loaded Owners");
 
@@ -108,5 +107,21 @@ public class DataLoader implements CommandLineRunner {
         vetService.save(vet1);
 
         System.out.println("Loaded vets");
+
+        /** Create visits */
+        Visit visit = new Visit();
+        visit.setDate(LocalDate.now());
+        visit.setDescription("Dog is ill");
+        visit.setPet(savedOwner1.getPets().iterator().next()); // we need savedOwner because saved owner's pet has ids, and we have added validation
+
+        visitService.save(visit);
+
+        Visit visit2 = new Visit();
+        visit2.setDate(LocalDate.now());
+        visit2.setDescription("Cat is ill");
+        visit2.setPet(savedOwner2.getPets().iterator().next());
+
+        visitService.save(visit2);
+        System.out.println("Visits loaded !!!");
     }
 }

@@ -2,9 +2,11 @@ package com.raman.springboot.rdspetclinic.services.map;
 
 import com.raman.springboot.rdspetclinic.model.Visit;
 import com.raman.springboot.rdspetclinic.services.VisitService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class VisitMapService extends AbstractMapService<Visit, Long> implements VisitService {
 
     @Override
